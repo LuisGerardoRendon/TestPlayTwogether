@@ -14,6 +14,10 @@ import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
     private WebDriver driver;
+    WebElement buttonLogin;
+    WebElement inputEmail;
+    WebElement inputPassword;
+    WebElement msgWarning;
 
     @Before
     public void setUp() {
@@ -26,32 +30,54 @@ public class LoginTest {
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(Config.loginRute);
+        buttonLogin = driver.findElement(By.id("btnLogin"));
+        inputEmail = driver.findElement(By.id("tfEmailLogin"));
+        inputPassword = driver.findElement(By.id("tfPasswordLogin"));
+        msgWarning = driver.findElement(By.id("warning"));
+
     }
 
     @Test
-    public void testGooglePage() {
-        WebElement botonLogin = driver.findElement(By.id("btnLogin"));
-
+    public void testInputsEmpty() {
 
         WebDriverWait timer = new WebDriverWait(driver, 10);
-
-        botonLogin.click();
+        buttonLogin.click();
         WebDriverWait timer1 = new WebDriverWait(driver, 10);
-
-        WebElement msgWarning = driver.findElement(By.id("warning"));
         String msgTextWarning = getInnerText(driver, msgWarning);
-        
 
         assertEquals("Por favor, ingrese una contraseña válida", msgTextWarning);
+        driver.close(); //Para cerrar las ventanas del navegador
 
+    }
 
+    @Test
+    public  void testInvalidEmail(){
+        inputEmail.sendKeys("luissss");
+        inputPassword.sendKeys("Beethoven1");
+        WebDriverWait timer = new WebDriverWait(driver, 10);
+        buttonLogin.click();
+        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        String msgTextWarning = getInnerText(driver, msgWarning);
+        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        driver.close();
+    }
 
+    @Test
+    public  void testInvalidPassword(){
+        inputEmail.sendKeys("rendon.luisgerardo@gmail.com");
+        inputPassword.sendKeys("123456");
+        buttonLogin.click();
+        String msgTextWarning = getInnerText(driver, msgWarning);
+        assertEquals("Por favor, ingrese una contraseña válida", msgTextWarning);
+        driver.close();
     }
 
     public static String getInnerText(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         return (String) executor.executeScript("return arguments[0].innerText", element);
     }
+
+
 
 
 }
