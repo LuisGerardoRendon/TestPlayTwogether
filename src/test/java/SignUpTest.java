@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertEquals;
 
 public class SignUpTest {
@@ -30,16 +32,15 @@ public class SignUpTest {
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(Config.signupRute);
-/*
+
         inputEmail = driver.findElement(By.id("tfEmail"));
         inputPassword = driver.findElement(By.id("tfPassword"));
         inputRepeatPassword = driver.findElement(By.id("tfRepeatPassword"));
         inputNickname = driver.findElement(By.id("tfNickname"));
         inputBirthday = driver.findElement(By.id("dpBirthday"));
         inputSchedule = driver.findElement(By.id("radio-for-test"));
-        msgWarning = driver.findElement(By.id("warning"));
 
- */
+        msgWarning = driver.findElement(By.id("warning"));
         buttonSignUp = driver.findElement(By.id("btnSignUp"));
     }
 
@@ -47,9 +48,8 @@ public class SignUpTest {
     public void testInputsEmpty() {
 
         WebDriverWait timer = new WebDriverWait(driver, 10);
-        //Actions actions = new Actions(driver);
-        //actions.moveToElement(buttonSignUp).click().build().perform();
-        buttonSignUp.click();
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", buttonSignUp);
         WebDriverWait timer1 = new WebDriverWait(driver, 10);
         String msgTextWarning = getInnerText(driver, msgWarning);
 
@@ -57,7 +57,7 @@ public class SignUpTest {
         //driver.close(); //Para cerrar las ventanas del navegador
 
     }
-/*
+
     @Test
     public void testCorrectSignUp(){
         WebDriverWait timer = new WebDriverWait(driver, 10);
@@ -66,12 +66,17 @@ public class SignUpTest {
         inputPassword.sendKeys("Beethoven1");
         inputRepeatPassword.sendKeys("Beethoven1");
         inputBirthday.sendKeys("11101999");
-        inputSchedule.click();
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        System.out.println(msgTextWarning);
+        assertEquals("El nickname o el email existen, prueba cambiándolos*", msgTextWarning);
         driver.close();
     }
 
@@ -83,11 +88,17 @@ public class SignUpTest {
         inputPassword.sendKeys("Beethoven1");
         inputRepeatPassword.sendKeys("Beethoven1");
         inputBirthday.sendKeys("11101999");
-        inputSchedule.click();
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -99,12 +110,16 @@ public class SignUpTest {
         inputPassword.sendKeys("Beethoven1");
         inputRepeatPassword.sendKeys("Beethoven1");
         inputBirthday.sendKeys("11101999");
-        inputSchedule.click();
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -116,12 +131,16 @@ public class SignUpTest {
 
         inputRepeatPassword.sendKeys("Beethoven1");
         inputBirthday.sendKeys("11101999");
-        inputSchedule.click();
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -133,12 +152,16 @@ public class SignUpTest {
         inputPassword.sendKeys("Beethoven1");
 
         inputBirthday.sendKeys("11101999");
-        inputSchedule.click();
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -149,13 +172,16 @@ public class SignUpTest {
         inputNickname.sendKeys("TestUser");
         inputPassword.sendKeys("Beethoven1");
         inputRepeatPassword.sendKeys("Beethoven1");
-
-        inputSchedule.click();
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", inputSchedule);
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -168,11 +194,15 @@ public class SignUpTest {
         inputRepeatPassword.sendKeys("Beethoven1");
         inputBirthday.sendKeys("11101999");
 
-
-        buttonSignUp.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", buttonSignUp);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese un email válido", msgTextWarning);
+        assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
 
@@ -187,7 +217,7 @@ public class SignUpTest {
         driver.close();
     }
 
- */
+
 
     public static String getInnerText(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
