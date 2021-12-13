@@ -21,8 +21,6 @@ public class SignUpTest {
     WebElement inputNickname;
     WebElement inputBirthday;
     WebElement inputSchedule;
-    WebElement msgWarning;
-
     @Before
     public void setUp() {
         System.setProperty(
@@ -43,6 +41,8 @@ public class SignUpTest {
         msgWarning = driver.findElement(By.id("warning"));
         buttonSignUp = driver.findElement(By.id("btnSignUp"));
     }
+
+    WebElement msgWarning;
 
     @Test
     public void testInputsEmpty() {
