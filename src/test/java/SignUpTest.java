@@ -14,6 +14,9 @@ import static org.junit.Assert.assertEquals;
 
 public class SignUpTest {
     private WebDriver driver;
+
+
+
     WebElement buttonSignUp;
     WebElement inputEmail;
     WebElement inputPassword;
