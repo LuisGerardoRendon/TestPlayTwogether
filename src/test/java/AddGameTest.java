@@ -93,8 +93,62 @@ public class AddGameTest {
         JavascriptExecutor executor2 = (JavascriptExecutor)driver;
         executor2.executeScript("arguments[0].click()", this.btnSaveGame);
         waitTest(1);
-        String message = getInnerText(driver, msgWarning);
-        assertEquals("Las horas totales no son válidas", message);
+        WebElement hoursWarning = driver.findElement(By.id("hours-warning"));
+        String message = getInnerText(driver, hoursWarning);
+        assertEquals("Las horas totales no son válidas, deben estar entre 1 y 2000", message);
+        driver.close();
+    }
+
+    @Test
+    public void addGameWithoutRankTest(){
+        goToValorant();
+        this.fillFIeldsWithoutRank();
+        JavascriptExecutor executor2 = (JavascriptExecutor)driver;
+        executor2.executeScript("arguments[0].click()", this.btnSaveGame);
+        waitTest(1);
+        WebElement rankWarning = driver.findElement(By.id("rank-warning"));
+        String message = getInnerText(driver, rankWarning);
+        assertEquals("Elige un rango porfavor", message);
+        driver.close();
+
+    }
+    @Test
+    public void addGameWithoutAgentTest(){
+        goToValorant();
+        this.fillFIeldsWithouthAgent();
+        JavascriptExecutor executor2 = (JavascriptExecutor)driver;
+        executor2.executeScript("arguments[0].click()", this.btnSaveGame);
+        waitTest(1);
+        WebElement characterWarning = driver.findElement(By.id("character-warning"));
+        String message = getInnerText(driver, characterWarning);
+        assertEquals("Selecciona un agente", message);
+        driver.close();
+
+    }
+
+    @Test
+    public void addGameWithoutLevelTest(){
+        goToValorant();
+        this.fillFIeldsWithoutLevel();
+        JavascriptExecutor executor2 = (JavascriptExecutor)driver;
+        executor2.executeScript("arguments[0].click()", this.btnSaveGame);
+        waitTest(1);
+        WebElement levelWarning = driver.findElement(By.id("level-warning"));
+        String message = getInnerText(driver, levelWarning);
+        assertEquals("El nivel de cuenta es inválido, debe de estar entre 1 y 3000", message);
+        driver.close();
+    }
+
+    @Test
+    public void addGameWithoutNicknameTest(){
+        goToValorant();
+        this.fillFIeldsWithoutNickname();
+        JavascriptExecutor executor2 = (JavascriptExecutor)driver;
+        executor2.executeScript("arguments[0].click()", this.btnSaveGame);
+        waitTest(1);
+        WebElement nicknameWarning = driver.findElement(By.id("nickname-warning"));
+        String message = getInnerText(driver, nicknameWarning);
+        assertEquals("Ingresa un nickname válido de entre 4 y 26 caracteres", message);
         driver.close();
     }
 

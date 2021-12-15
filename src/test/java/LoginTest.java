@@ -40,11 +40,10 @@ public class LoginTest {
     @Test
     public void testInputsEmpty() {
 
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(2);
         buttonLogin.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        waitTest(2);
         String msgTextWarning = getInnerText(driver, msgWarning);
-
         assertEquals("Por favor, ingrese una contraseña válida", msgTextWarning);
         driver.close(); //Para cerrar las ventanas del navegador
 
@@ -54,9 +53,9 @@ public class LoginTest {
     public  void testInvalidEmail(){
         inputEmail.sendKeys("luissss");
         inputPassword.sendKeys("Beethoven1");
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(2);
         buttonLogin.click();
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        waitTest(2);
         String msgTextWarning = getInnerText(driver, msgWarning);
         assertEquals("Por favor, ingrese un email válido", msgTextWarning);
         driver.close();
@@ -64,9 +63,12 @@ public class LoginTest {
 
     @Test
     public  void testInvalidPassword(){
+        waitTest(2);
         inputEmail.sendKeys("rendon.luisgerardo@gmail.com");
         inputPassword.sendKeys("123456");
+        waitTest(2);
         buttonLogin.click();
+        waitTest(2);
         String msgTextWarning = getInnerText(driver, msgWarning);
         assertEquals("Por favor, ingrese una contraseña válida", msgTextWarning);
         driver.close();
@@ -75,6 +77,13 @@ public class LoginTest {
     public static String getInnerText(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         return (String) executor.executeScript("return arguments[0].innerText", element);
+    }
+    public static void waitTest(int seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
