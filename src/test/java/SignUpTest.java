@@ -16,7 +16,6 @@ public class SignUpTest {
     private WebDriver driver;
 
 
-
     WebElement buttonSignUp;
     WebElement inputEmail;
     WebElement inputPassword;
@@ -24,6 +23,7 @@ public class SignUpTest {
     WebElement inputNickname;
     WebElement inputBirthday;
     WebElement inputSchedule;
+
     @Before
     public void setUp() {
         System.setProperty(
@@ -49,30 +49,34 @@ public class SignUpTest {
 
     @Test
     public void testInputsEmpty() {
-
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", buttonSignUp);
-        WebDriverWait timer1 = new WebDriverWait(driver, 10);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", buttonSignUp);
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String msgTextWarning = getInnerText(driver, msgWarning);
 
         assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         //driver.close(); //Para cerrar las ventanas del navegador
-
     }
 
     @Test
-    public void testCorrectSignUp(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-        inputNickname.sendKeys("TestUser");
-        inputPassword.sendKeys("Beethoven1");
-        inputRepeatPassword.sendKeys("Beethoven1");
-        inputBirthday.sendKeys("11101999");
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testCorrectSignUp() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            inputEmail.sendKeys("email@test.com");
+            inputNickname.sendKeys("TestUser");
+            inputPassword.sendKeys("Beethoven1");
+            inputRepeatPassword.sendKeys("Beethoven1");
+            inputBirthday.sendKeys("11101999");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -84,18 +88,19 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoEmail(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-
-        inputNickname.sendKeys("TestUser");
-        inputPassword.sendKeys("Beethoven1");
-        inputRepeatPassword.sendKeys("Beethoven1");
-        inputBirthday.sendKeys("11101999");
-
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoEmail() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+
+            inputNickname.sendKeys("TestUser");
+            inputPassword.sendKeys("Beethoven1");
+            inputRepeatPassword.sendKeys("Beethoven1");
+            inputBirthday.sendKeys("11101999");
+
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
+
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -106,17 +111,17 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoNickname(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-
-        inputPassword.sendKeys("Beethoven1");
-        inputRepeatPassword.sendKeys("Beethoven1");
-        inputBirthday.sendKeys("11101999");
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoNickname() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            inputEmail.sendKeys("email@test.com");
+
+            inputPassword.sendKeys("Beethoven1");
+            inputRepeatPassword.sendKeys("Beethoven1");
+            inputBirthday.sendKeys("11101999");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -127,17 +132,18 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoPassword(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-        inputNickname.sendKeys("TestUser");
-
-        inputRepeatPassword.sendKeys("Beethoven1");
-        inputBirthday.sendKeys("11101999");
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoPassword() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            inputEmail.sendKeys("email@test.com");
+            inputNickname.sendKeys("TestUser");
+
+            inputRepeatPassword.sendKeys("Beethoven1");
+            inputBirthday.sendKeys("11101999");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -148,17 +154,18 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoRepeatPassword(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-        inputNickname.sendKeys("TestUser");
-        inputPassword.sendKeys("Beethoven1");
-
-        inputBirthday.sendKeys("11101999");
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoRepeatPassword() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            inputEmail.sendKeys("email@test.com");
+            inputNickname.sendKeys("TestUser");
+            inputPassword.sendKeys("Beethoven1");
+
+            inputBirthday.sendKeys("11101999");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -169,16 +176,17 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoBirthday(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-        inputNickname.sendKeys("TestUser");
-        inputPassword.sendKeys("Beethoven1");
-        inputRepeatPassword.sendKeys("Beethoven1");
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", inputSchedule);
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoBirthday() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            inputEmail.sendKeys("email@test.com");
+            inputNickname.sendKeys("TestUser");
+            inputPassword.sendKeys("Beethoven1");
+            inputRepeatPassword.sendKeys("Beethoven1");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", inputSchedule);
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -189,17 +197,18 @@ public class SignUpTest {
     }
 
     @Test
-    public void testNoShedule(){
-        WebDriverWait timer = new WebDriverWait(driver, 10);
-        inputEmail.sendKeys("email@test.com");
-        inputNickname.sendKeys("TestUser");
-        inputPassword.sendKeys("Beethoven1");
-        inputRepeatPassword.sendKeys("Beethoven1");
-        inputBirthday.sendKeys("11101999");
-
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", buttonSignUp);
+    public void testNoShedule() {
         try {
+            TimeUnit.SECONDS.sleep(3);
+            WebDriverWait timer = new WebDriverWait(driver, 10);
+            inputEmail.sendKeys("email@test.com");
+            inputNickname.sendKeys("TestUser");
+            inputPassword.sendKeys("Beethoven1");
+            inputRepeatPassword.sendKeys("Beethoven1");
+            inputBirthday.sendKeys("11101999");
+
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click()", buttonSignUp);
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -208,26 +217,9 @@ public class SignUpTest {
         assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
         driver.close();
     }
-
-
-    @Test
-    public void testInvalidPassword(){
-        inputEmail.sendKeys("rendon.luisgerardo@gmail.com");
-        inputPassword.sendKeys("123456");
-        buttonSignUp.click();
-        String msgTextWarning = getInnerText(driver, msgWarning);
-        assertEquals("Por favor, ingrese una contraseña válida", msgTextWarning);
-        driver.close();
-    }
-
-
 
     public static String getInnerText(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         return (String) executor.executeScript("return arguments[0].innerText", element);
     }
-
-
-
-
 }
