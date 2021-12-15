@@ -61,7 +61,7 @@ public class SignUpTest {
         String msgTextWarning = getInnerText(driver, msgWarning);
 
         assertEquals("Llena todos los campos obligatorios (*)", msgTextWarning);
-        //driver.close(); //Para cerrar las ventanas del navegador
+        driver.close(); //Para cerrar las ventanas del navegador
     }
 
     @Test

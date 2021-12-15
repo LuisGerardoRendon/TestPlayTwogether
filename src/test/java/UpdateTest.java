@@ -58,6 +58,7 @@ public class UpdateTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        driver.close();
     }
 
     public void goToUpdate(){
@@ -79,7 +80,6 @@ public class UpdateTest {
         msgWarning = driver.findElement(By.id("warning"));
     }
 
-    @Test
     public void goToMyProfile(){
         this.login();
         buttonMyProfile = driver.findElement(By.id("hbMyProfile"));
@@ -115,6 +115,7 @@ public class UpdateTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        driver.close();
     }
 
     @Test
