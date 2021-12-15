@@ -42,8 +42,6 @@ public class UpdateTest {
         inputLoginEmail = driver.findElement(By.id("tfEmailLogin"));
         inputLoginPassword = driver.findElement(By.id("tfPasswordLogin"));
         buttonLogin = driver.findElement(By.id("btnLogin"));
-
-
     }
 
     @Test
@@ -62,7 +60,6 @@ public class UpdateTest {
         }
     }
 
-    @Test
     public void goToUpdate(){
         this.goToMyProfile();
         buttonEdit = driver.findElement(By.id("btnEdit"));
@@ -110,7 +107,7 @@ public class UpdateTest {
 
     @Test
     public void testInputsEmpty() {
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        this.goToUpdate();
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", buttonUpdate);
         try {
@@ -120,14 +117,19 @@ public class UpdateTest {
         }
     }
 
-
     @Test
     public void testNoEqualPassword(){
+        this.goToUpdate();
         inputPassword.sendKeys("Beethoven1");
         inputRepeatPassword.sendKeys("Beethoven2");
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", buttonUpdate);
         String msgTextWarning = getInnerText(driver, msgWarning);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertEquals("* Las contraseñas no coinciden", msgTextWarning);
         driver.close();
     }
@@ -139,7 +141,6 @@ public class UpdateTest {
         inputRepeatPassword.sendKeys("hola");
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", buttonUpdate);
-
 
         String msgTextWarning = getInnerText(driver, msgWarning);
         assertEquals("* La contraseña debe contener al menos una mayúscula y un número", msgTextWarning);
@@ -162,6 +163,11 @@ public class UpdateTest {
         inputNickname.sendKeys("One");
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", buttonUpdate);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.close();
     }
 
@@ -171,6 +177,27 @@ public class UpdateTest {
         inputBirthday.sendKeys("01022003");
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", buttonUpdate);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.close();
+    }
+
+    @Test
+    public void testUpdateMinorBirthday(){
+        this.goToUpdate();
+        inputBirthday.sendKeys("01022015");
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", buttonUpdate);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String msgTextWarning = getInnerText(driver, msgWarning);
+        assertEquals("* Debes ser mayor que 11 años y menor que 100 para poder registrarte", msgTextWarning);
         driver.close();
     }
 
@@ -178,8 +205,4 @@ public class UpdateTest {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         return (String) executor.executeScript("return arguments[0].innerText", element);
     }
-
-
-
-
 }
