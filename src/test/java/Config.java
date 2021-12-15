@@ -1,5 +1,5 @@
 public class Config {
-    public static String loginRute = "http://localhost/PlayTwogetherFrontend/";
-    public static String signupRute = "http://localhost/PlayTwogetherFrontend/view/signup.html";
-    public static  String searchRute = "http://localhost/PlayTwogetherFrontend/view/search.html";
+    public static String loginRute = "http://playtwogether.ddns.net";
+    public static String signupRute = "http://playtwogether.ddns.net/view/signup.html";
+    public static String searchRute = "http://playtwogether.ddns.net/view/search.html";
 }
