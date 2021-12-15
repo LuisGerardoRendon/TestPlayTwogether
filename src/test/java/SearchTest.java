@@ -46,7 +46,7 @@ public class SearchTest {
 
     @Test
     public void testInputsEmpty() {
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(3);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", btnGeneralSearch);
         boolean playersFound = goToPlayerList();
@@ -104,7 +104,7 @@ public class SearchTest {
     @Test
     public void testOnlySechedule() {
         selectSchedule();
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(3);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", btnGeneralSearch);
         boolean playersFound = goToPlayerList();
@@ -115,7 +115,7 @@ public class SearchTest {
     @Test
     public void testOnlyGame() {
         selectGame();
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(3);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", btnGeneralSearch);
         boolean playersFound = goToPlayerList();
@@ -131,7 +131,7 @@ public class SearchTest {
         selectSchedule();
         selectGame();
         selectGender();
-        WebDriverWait timer = new WebDriverWait(driver, 10);
+        waitTest(3);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", btnGeneralSearch);
         boolean playersFound = goToPlayerList();
@@ -139,6 +139,97 @@ public class SearchTest {
         driver.close();
 
     }
+
+    @Test
+    public void testWithoutMinAge() {
+        selectSchedule();
+        selectGame();
+        selectGender();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+    @Test
+    public void testWithoutSchedule() {
+        selectMinAge();
+        selectGame();
+        selectGender();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+    @Test
+    public void testWithoutGame() {
+        selectMinAge();
+        selectSchedule();
+        selectGender();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+    @Test
+    public void testWithoutGender() {
+        selectMinAge();
+        selectSchedule();
+        selectGame();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+
+    @Test
+    public void testWithoutMinAgeAndSchedule() {
+        selectGame();
+        selectGender();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+    @Test
+    public void testWithoutScheduleAndGame() {
+        selectMinAge();
+        selectGender();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+    @Test
+    public void testWithoutGameAndGender() {
+        selectMinAge();
+        selectSchedule();
+        waitTest(3);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click()", btnGeneralSearch);
+        boolean playersFound = goToPlayerList();
+        assertTrue(playersFound);
+        driver.close();
+
+    }
+
 
 
 
